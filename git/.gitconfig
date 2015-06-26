@@ -1,0 +1,36 @@
+[user]
+	name = TaoBeier
+	email = tao12345666333@163.com
+[core]
+	editour = vim
+[merge]
+	tool = vimdiff
+
+[alias]
+    co = checkout
+    ci = commit -a
+    st = status
+    br = branch
+    di = diff
+    oneline  = log --pretty=oneline --since='2 days ago'
+    onelog = log -p -1
+[color]
+    ui = auto
+    interactive = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = green
+    changed = magenta
+    untracked = bold yellow
+[diff]
+    tool = vimdiff
