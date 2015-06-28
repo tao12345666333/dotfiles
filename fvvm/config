@@ -1,0 +1,321 @@
+#==========
+#  ____________________________
+# (   _________________________)
+#  ) (__  _  _  _    _  
+# (   __)( \/ )( \/\/ )/\/\
+#  ) (    \  /  \    //    \
+# (___)    \/    \/\/(_/\/\_)
+#
+# My personal fvwm2rc file
+#
+#======================================
+
+ImagePath $[FVWM_USERDIR]/images:+:$[FVWM_USERDIR]/images/icons:+:$[FVWM_USERDIR]/images/deco:+:$[FVWM_USERDIR]/images/dock:+:$[FVWM_USERDIR]/images/menu:+:$[FVWM_USERDIR]/images/24
+ImagePath $[FVWM_USERDIR]/images/icons/mac:+:$[FVWM_USERDIR]/images/pictures
+SetEnv walldir $[FVWM_USERDIR]/images/pictures/desktop
+
+#============== Desktops ==============
+
+DeskTopSize 3x1
+DesktopName 0 Main
+DesktopName 1 Mikasa
+EdgeScroll 100 100
+EdgeResistance 150  150
+EdgeThickness 1
+ClickTime 350
+MoveThreshold 3
+Style * ClickToFocus, MouseFocusClickRaises
+EwmhBaseStruts 0 0 0 60
+IgnoreModifiers L25
+OpaqueMoveSize unlimited
+
+#============== Function ==============
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
+#+ I Exec exec fvwm-root -r $[walldir]/gou.png
++ I Exec feh --bg-scale $[walldir]/gou.png
++ I Exec exec xcompmgr -Ss -n -Cc -fF -I-10 -O-10 -D1 -t-3 -l-4 -r4
++ I Exec exec fcitx
++ I Exec exec conky
++ I Exec exec tilda
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
+#+ I test (!Restart) Exec 3ddeskd
+#+ I Module FvwmButtons
++ I Module FvwmPager *
+#+ I Module FvwmIconMan
++ I Module FvwmEvent
+#+ I Module FvwmCommandS
+#+ I Module FvwmButtons FvwmDock
+#+ I Test (Restart) All (Iconic) PlaceAgain Icon
+
+DestroyFunc ExitFunction
+AddToFunc ExitFunction
+#+ I Exec rm $[FVWM_USERDIR]/images/icontmp/icon.tmp*
+#+ I Exec rm $[FVWM_USERDIR]/images/icontmp/miniicon.tmp*
+#+ I test (!torestart) Exec 3ddesk --stop
+
+#================ Style ================
+
+Style * Font "StringEncoding=UTF-8:xft:WenQuanYi Micro Hei:size=10"
+#Style * IconBox 100x0+40-40, IconGrid 20 20, IconFill right bottom, IconSize 64 64
+#Style * IconBox $[vp.width]x$[vp.height]+10+40, IconFill t l, IconBackgroundPadding 1, IconBackgroundRelief 0
+Style * !EWMHMiniIconOverride, IconOverride, NoIconTitle
+Style * DecorateTransient, UseDecor WindowDecoration, !StickyStippledTitle, IndexedWindowName
+Style * MinOverlapPlacement
+Style * SnapAttraction 5 All Screen
+Style * EdgeMoveDelay -1
+Style * EdgeMoveResistance 20
+Style * ClickToFocus
+Style * ResizeOpaque
+Style * MiniIcon quest.png, !Icon
+Style * ResizeOutline, ResizeOutlineThin
+#Style * RoundedCornersTop
+#Style * RoundedCornersBottom
+Style * Colorset 1, HilightColorset 1
+Style * BorderWidth 0, HandleWidth 0, BorderColorset 2, HilightBorderColorset 2
+#Style * UseDecor WindowDecoration
+
+Style Fvwm* !Title, !Borders, !Iconifiable, WindowListSkip, !FixedPosition, FixedSize, Sticky
+#Style FvwmButtons NeverFocus
+#Style FvwmIdent Title
+#Style FvwmConsole Title, Borders, !FixedSize
+
+Style * !Title
+#Style conky !Title
+#Style tilda !Title
+#Style Firefox !Title
+#Style terminator !Title
+
+MenuStyle * MenuColorset 33, HilightBack, ActiveColorset 34
+MenuStyle * BorderWidth 0, HilightBack, ActiveFore
+MenuStyle * Hilight3DThickness 0, Animation
+MenuStyle * Font "StringEncoding=UTF-8:xft:Comic Sans MS:size=10"
+#MenuStyle * PopupImmediately, PopdownImmediately, PopupOffset 0 100
+MenuStyle * TitleUnderlines0, TrianglesSolid
+MenuStyle * ItemFormat "%s%|%5.i%5.5l%5.5r%.5>%|%i"
+MenuStyle * VerticalItemSpacing 0, VerticalTitleSpacing 0
+#MenuStyle * RoundedCorners
+
+#============== Colorset ==============
+
+Colorset 1 #e6e1db
+Colorset 2 bg #bdb6ac
+Colorset 3 Translucent #f4f6fa 50
+Colorset 4 fg #fff, bg #2e2e2e, sh #e7e1db, hi #e7e1db
+Colorset 5 fg black, bg white, sh white, fgsh white, RootTransparent, Tint #f4f6fa 30
+Colorset 6 fg black, bg black, sh black, hi black, fgsh black, RootTransparent buffer, Tint #f4f6fa 50
+
+Colorset 11 fg black, bg white, sh white, fgsh white, RootTransparent, Tint #f4f6fa 30
+Colorset 12 bg #bdb6ae
+
+# Pager normal
+Colorset 13 fg white, bg white, hi black, \
+            RootTransparent, Tint black 60
+# Pager hilighted
+Colorset 14 fg white, bg white, hi black, \
+            RootTransparent, Tint black 30 
+# Pager ballon
+Colorset 15 fg blach, bg white
+
+# Pager mini windows normal
+Colorset 40 fg white, bg white, hi white, \
+            Pixmap  pa_minwinoff.png
+# Pager mini windows higlighted
+Colorset 41 fg white, bg white, hi white, \
+            Pixmap  pa_minwinon.png
+# Dock main
+Colorset 50 fg white, bg white, sh white, \
+            RootTransparent buffer, Tint #f6f6f6 60
+
+# Dock applet on the right, hour
+Colorset 55 fg white, bg black, sh black, fgsh black, \
+             RootTransparent, Tint #f4f6fa 60
+# Dock applet on the right, minute
+Colorset 56 fg white, bg black, sh black, fgsh black, \
+            RootTransparent, Tint #f4f6fa 60
+# Dock applet on the right, AM/PM
+Colorset 57 fg black, bg black, sh black, fgsh white, \
+            RootTransparent, Tint #f4f6fa 60
+# Dock applet on the right, minute
+Colorset 58 fg black, bg black, sh black, fgsh black, \
+            RootTransparent, Tint #f4f6fa 60
+# Pixmap menu 
+Colorset 100 fg white, bg black, sh black, hi white, fgsh black, \
+            RootTransparent buffer, Tint black 60, \
+            shape menu_shape.xpm
+# Hilighted     menu item
+Colorset 101    fg white, bg black, hi white, fgsh white
+
+Colorset 71 fg black, bg black, sh black, RootTransparent, Tint #f6f6f6 100
+
+# Pager
+Colorset 200 Pixmap $[FVWM_USERDIR]/images/pictures/1.png
+Colorset 201 Pixmap $[FVWM_USERDIR]/images/pictures/11.png
+#Colorset 202 Pixmap $[FVWM_USERDIR]/images/pictures/2.png
+Colorset 203 Pixmap $[FVWM_USERDIR]/images/pictures/22.png
+Colorset 204 Pixmap $[FVWM_USERDIR]/images/pictures/3.png
+
+Colorset 31 Pixmap macdock.png
+Colorset 32 fg #000000, fgsh #ffffff, Pixmap fondobarra.png
+
+# Menu Colorset
+#Colorset 33 fg #FFFFFF, fgsh #262626, bg #FFFFFF, hi #4c4c4c, sh #070707, Translucent #262626 80
+#Colorset 34 fg #9c9c9c, fgsh #ffffff, bg #101010, hi #262626, sh #262626
+Colorset 33 fg #FFFFFF, fgsh #262626, bg #262626, hi #4c4c4c, sh #070707
+Colorset 34 fg #9c9c9c, fgsh #ffffff, bg #101010, hi #262626, sh #262626
+
+
+*FvwmButtons: Colorset 31
+
+*FvwmIconMan: Colorset 5
+*FvwmIconMan: PlainColorset 5
+*FvwmIconMan: FocusColorset 6
+*FvwmIconMan: SelectColorset 5
+*FvwmIconMan: FocusAndSelectColorset 6
+*FvwmIconMan: IconColorset 5
+
+*FvwmFormDefault: Colorset 1
+*FvwmFormDefault: ItemColorset 6
+
+*FvwmPager: MiniIcons
+*FvwmPager: Colorset 0 201
+*FvwmPager: Colorset 1 203
+*FvwmPager: HilightColorset 0 200
+*FvwmPager: HilightColorset 1 204
+*FvwmPager: WindowColorsets 40 41
+
+#============== FvwmPager ==============
+
+DestroyModuleConfig FvwmPager
+*FvwmPager: Geometry        245x48-860-0
+*FvwmPager: BorderWidth     0
+*FvwmPager: Balloons        All
+*FvwmPager: SmallFont       none
+*FvwmPager: Font            none
+#*FvwmPager: BalloonFont     "StringEncoding=gbk-0:xft:WenQuanYi Micro Hei:size=10:encoding=iso10646-1"
+*FvwmPager: BallonYOffset   +2
+*FvwmPager: WindowBorderWidth 1
+*FvwmPager: WindowLabelFormat ""
+*FvwmPager: MoveThreshold 0
+*FvwmPager: UseSkipList
+*FvwmPager: Rows            1
+#*FvwmPager: Columns        3
+*FvwmPager: NoSeparators
+*FvwmPager: ShapeLabels
+#*FvwmPager: NoDeskHilight
+
+#===============FvwmIconMan==================
+
+DestroyModuleConfig FvwmIconMan
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: Sort none
+*FvwmIconMan: Format "%t"
+*FvwmIconMan: Title ""
+*FvwmIconMan: Font $[RegularFont]
+*FvwmIconMan: ManagerGeometry +822+$[panel_height]
+*FvwmIconMan: FollowFocus true
+*FvwmIconMan: Shape false
+
+*FvwmIconMan: PlainButton flat
+*FvwmIconMan: FocusButton flat
+*FvwmIconMan: SelectButton flat
+*FvwmIconMan: FocusAndSelectButton flat
+*FvwmIconMan: IconButton flat
+
+*FvwmIconMan: Action Mouse 1 N sendcommand PanelClick
+*FvwmIconMan: Action Mouse 2 N sendcommand HideWindows
+*FvwmIconMan: Action Mouse 3 N sendcommand "Menu menu_WindowOps mouse c -100m-8p"
+*FvwmIconMan: Action Mouse 4 N sendcommand EWMHActivateWindowFunc
+*FvwmIconMan: Action Mouse 5 N sendcommand "ThisWindow (!Iconic) Iconify"
+
+#============== WindowList ==============
+
+
+#================= Menu =================
+
+DestroyMenu MenuFvwmRoot
+AddToMenu MenuFvwmRoot
++   *$[FVWM_USERDIR]/images/menu/menu_up.png* Title
++   Terminal%terminal.png%              Exec sakura
++   "File Manager"%folder.png%          Exec pcmanfm
++   "Run.."%run.png%                    None (*run) Exec dmenu_run
++   ""                                  Nop
++   "Xlock"%lock.png%                   Exec xlock
++   "Restart Fvwm"%restart.png%         Restart
++   "Quit"%quit.png%                    Quit
++   *$[FVWM_USERDIR]/images/menu/menu_down.png* Title
+
+#============== FvwmBacker ==============
+
+AddToFunc   StartFunction  I   FvwmBacker
+*FvwmBacker:Command(Desk 1,Page 0 0) Exec feh --bg-scale $[walldir]/1.jpg
+*FvwmBacker:Command(Desk 1,Page 1 0) Exec feh --bg-scale $[walldir]/2.jpg
+*FvwmBacker:Command(Desk 1,Page 2 0) Exec feh --bg-scale $[walldir]/3.jpg
+
+#============== FvwmEvent ===============
+
+DestroyModuleConfig FvwmEvent: *
+*FvwmEvent: new_page CurrentPageFocusFunc
+*FvwmEvent: new_desk CurrentPageFocusFunc
+#*FvwmEvent: add_window NewWindowStartMaximized
+*FvwmEvent: focus_change MarkWindowAsActiveFunc
+*FvwmEvent: destroy_window CurrentPageFocusFunc
+
+DestroyFunc NewWindowStartMaximized
+AddToFunc NewWindowStartMaximized
++ I ThisWindow (main_window|*Bon*|opera|sylpheed*) Maximize
+
+DestroyFunc CurrentPageFocusFunc
+AddToFunc CurrentPageFocusFunc
++ I Next (CurrentPage, State 2) Focus
++ I None (CurrentPage, Focused) Prev (CurrentPage, !Iconified, !Sticky) Focus
+
+DestroyFunc MarkWindowAsActiveFunc
+AddToFunc MarkWindowAsActiveFunc
++ I Current (!Iconified) All (CurrentPage, !Focused) State 2 False
++ I Current (!Iconified) State 2 True
+
+DestroyFunc MoveFunc
+AddToFunc MoveFunc
++ I EWMHActivateWindowFunc
++ I Move
+
+DestroyFunc Mikasa
+AddToFunc Mikasa
++ I SetEnv FVWM_DESK $[desk.n]
++ I Test (EnvMatch FVWM_DESK 1) Exec feh --bg-scale $[walldir]/gou.png
++ I GotoDesk 1 0 1
+
+#================ Mouse ================
+
+Mouse 1       W       M   MoveFunc
+
+#============== Keyboard ===============
+
+Key F2       A       M       Exec dmenu_run
+Key F12      A       A       Exec terminator
+Key E        A       4       Exec sakura
+Key E        A       M       Close
+Key Q        A       M       Iconify
+Key W        A       M       Maximize
+Key Tab      A       4       Mikasa
+Key Tab      A       M       WindowList Root c c NoCurrentDeskTitle
+Key 1        A       M       MoveToPage 0 0
+Key 2        A       M       MoveToPage 1 0
+Key 3        A       M       MoveToPage 2 0
+Key Up       A       M       GoToPage wrapx  1p 1
+Key Down     A       M       GoToPage wrapx  1p 1
+Key Q        A       4       Exec nautilus
+Key T        A       4       Exec gnome-terminal
+Key F        A       4       Exec pcmanfm
+Key W        A       4       Exec google-chrome-stable
+Key P        A       C       Exec exec scrot -e 'mv $f Picture'
+Key X        A       4       Exec exec scrot -s -e 'mv $f Picture'
+Key S        A       M       FvwmRearrange -tile -u -mn 2 -resize -m 0 0 100 92
+
+Key XF86AudioMute A A Exec exec amixer set Master toggle
+Key XF86AudioLowerVolume A A Exec exec amixer set Master 2%-
+Key XF86AudioRaiseVolume A A Exec exec amixer set Master 2%+
