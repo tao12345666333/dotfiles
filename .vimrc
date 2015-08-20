@@ -51,7 +51,7 @@ Bundle 'kien/tabman.vim'
 " Airline
 Bundle 'bling/vim-airline'
 " Terminal Vim with 256 colors colorscheme
-Bundle 'fisadev/fisa-vim-colorscheme'
+"Bundle 'fisadev/fisa-vim-colorscheme'
 " Consoles as buffers
 Bundle 'rosenfeld/conque-term'
 " Pending tasks list
@@ -71,6 +71,7 @@ Bundle 'Shougo/neocomplcache.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
+Bundle 'tomasr/molokai'
 Bundle 'garbas/vim-snipmate'
 " Git/mercurial/others diff icons on the side of the file lines
 Bundle 'mhinz/vim-signify'
@@ -101,7 +102,6 @@ Bundle 'matchit.zip'
 Bundle 'Wombat'
 " Yank history navigation
 Bundle 'YankRing.vim'
-Bundle 'tomasr/molokai'
 
 " ============================================================================
 " Install plugins the first time vim runs
@@ -126,13 +126,21 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set cul
-set ignorecase
-
+set shortmess=atI
+set langmenu=zh_CN.UTF-8
+set mouse=v
+set whichwrap+=<,>,h,l
+set mouse=a
+set background=dark
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+"auto open or close NERDTree
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " always show status bar
 set ls=2
@@ -141,6 +149,8 @@ set ls=2
 set incsearch
 " highlighted search results
 set hlsearch
+" search ignore case
+set ignorecase
 
 " syntax highlight on
 syntax on
@@ -261,7 +271,7 @@ map <F2> :TaskList<CR>
 " Vim-debug ------------------------------
 
 " disable default mappings, have a lot of conflicts with other plugins
-let g:vim_debug_disable_mappings = 1
+let g:vim_debug_disable_mappings = 0
 " add some useful mappings
 map <F5> :Dbg over<CR>
 map <F6> :Dbg into<CR>
@@ -271,11 +281,15 @@ map <F9> :Dbg break<CR>
 map <F10> :Dbg watch<CR>
 map <F11> :Dbg down<CR>
 map <F12> :Dbg up<CR>
+map <C-w> <C-w>w
 
 " CtrlP ------------------------------
 
 " file finder mapping
 let g:ctrlp_map = ',e'
+"hidden some types files
+let g:ctrlp_show_hidden = 1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif           "Linux
 " tags (symbols) in current file finder mapping
 nmap ,g :CtrlPBufTag<CR>
 " tags (symbols) in all files finder mapping
@@ -303,7 +317,7 @@ nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
 let g:ctrlp_working_path_mode = 0
 " ignore these files and folders on file finder
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\.pyc$\|\.pyo$',
   \ }
 
@@ -317,10 +331,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 0
 " custom icons (enable them if you use a patched font, and enable the previous 
 " setting)
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_warning_symbol = '⚠'
-"let g:syntastic_style_error_symbol = '✗'
-"let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
 
 " Python-mode ------------------------------
 
@@ -330,7 +344,7 @@ let g:pymode_lint_signs = 0
 " don't fold python code on open
 let g:pymode_folding = 0
 " don't load rope by default. Change to 1 to use rope
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 " open definitions on same window, and custom mappings for definitions and
 " occurrences
 let g:pymode_rope_goto_definition_bind = ',d'
@@ -407,7 +421,7 @@ let g:choosewin_overlay_enable = 1
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
-let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 
 " to use fancy symbols for airline, uncomment the following lines and use a
 " patched font (more info on the README.rst)
@@ -421,7 +435,6 @@ endif
 "let g:airline_symbols.branch = '⭠'
 "let g:airline_symbols.readonly = '⭤'
 "let g:airline_symbols.linenr = '⭡'
-
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
