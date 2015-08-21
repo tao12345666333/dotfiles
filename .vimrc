@@ -1,6 +1,7 @@
 " ============================================================================
 " Vundle initialization
 " Avoid modify this section, unless you are very sure of what you are doing
+" by @fisadev
 
 " no vi-compatible
 set nocompatible
@@ -50,8 +51,6 @@ Bundle 'motemen/git-vim'
 Bundle 'kien/tabman.vim'
 " Airline
 Bundle 'bling/vim-airline'
-" Terminal Vim with 256 colors colorscheme
-"Bundle 'fisadev/fisa-vim-colorscheme'
 " Consoles as buffers
 Bundle 'rosenfeld/conque-term'
 " Pending tasks list
@@ -71,6 +70,7 @@ Bundle 'Shougo/neocomplcache.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
+" awesome colorscheme
 Bundle 'tomasr/molokai'
 Bundle 'garbas/vim-snipmate'
 " Git/mercurial/others diff icons on the side of the file lines
@@ -128,9 +128,8 @@ set shiftwidth=4
 set cul
 set shortmess=atI
 set langmenu=zh_CN.UTF-8
-set mouse=v
-set whichwrap+=<,>,h,l
 set mouse=a
+set whichwrap+=<,>,h,l,[,]
 set background=dark
 
 " tab length exceptions on some file types
@@ -271,7 +270,7 @@ map <F2> :TaskList<CR>
 " Vim-debug ------------------------------
 
 " disable default mappings, have a lot of conflicts with other plugins
-let g:vim_debug_disable_mappings = 0
+let g:vim_debug_disable_mappings = 1
 " add some useful mappings
 map <F5> :Dbg over<CR>
 map <F6> :Dbg into<CR>
@@ -317,7 +316,7 @@ nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
 let g:ctrlp_working_path_mode = 0
 " ignore these files and folders on file finder
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
   \ 'file': '\.pyc$\|\.pyo$',
   \ }
 
@@ -344,7 +343,7 @@ let g:pymode_lint_signs = 0
 " don't fold python code on open
 let g:pymode_folding = 0
 " don't load rope by default. Change to 1 to use rope
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 " open definitions on same window, and custom mappings for definitions and
 " occurrences
 let g:pymode_rope_goto_definition_bind = ',d'
@@ -419,9 +418,9 @@ let g:choosewin_overlay_enable = 1
 
 " Airline ------------------------------
 
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 1
 
 " to use fancy symbols for airline, uncomment the following lines and use a
 " patched font (more info on the README.rst)
