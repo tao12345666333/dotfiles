@@ -280,7 +280,6 @@ map <F9> :Dbg break<CR>
 map <F10> :Dbg watch<CR>
 map <F11> :Dbg down<CR>
 map <F12> :Dbg up<CR>
-map <C-w> <C-w>w
 
 " CtrlP ------------------------------
 
