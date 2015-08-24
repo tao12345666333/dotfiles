@@ -125,12 +125,25 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set cul
+" highlight cursor line and column
+set cursorline
+set cursorcolumn
+" hidden startup messages
 set shortmess=atI
+" auto read and write
+set autowrite
+set autoread
+" when deal with unsaved files ask what to do
+set confirm
+" no backup files
+set nobackup
+" other settings 
 set langmenu=zh_CN.UTF-8
 set mouse=a
 set whichwrap+=<,>,h,l,[,]
 set background=dark
+set encoding=utf-8
+
 
 " tab length exceptions on some file types
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -142,7 +155,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " always show status bar
-set ls=2
+set laststatus=2
 
 " incremental search
 set incsearch
@@ -441,3 +454,23 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" new file set title and turn to endline
+autocmd BufNewFile *.sh,*.py,*.rb exec ":call SetTitle()"
+function SetTitle()
+    if &filetype == 'sh'
+        call setline(1,"\#!/bin/bash")
+        call append(line("."), "")
+
+    elseif &filetype == 'python'
+        call setline(1,"#!/usr/bin/env python")
+        call append(line("."),"# coding=utf-8")
+	    call append(line(".")+1, "") 
+
+    elseif &filetype == 'ruby'
+        call setline(1,"#!/usr/bin/env ruby")
+        call append(line("."),"# encoding: utf-8")
+	    call append(line(".")+1, "")
+    endif
+endfunction
+autocmd BufNewFile * normal G
