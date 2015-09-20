@@ -250,7 +250,12 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal)        end),
+    awful.key({ modkey,           }, "c",      function () awful.util.spawn("google-chrome") end),
+    awful.key({ modkey,           }, "f",      function () awful.util.spawn("pcmanfm")       end),
+    -- screenshot
+    awful.key({ modkey,           }, "s",      function () awful.util.spawn_with_shell("sleep 0.5 && scrot -s -e 'mv $f ~/' ") end),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
