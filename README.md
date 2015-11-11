@@ -1,4 +1,4 @@
 ## my dotfiles
 ===
 
-    include git, fvvm etc.
+Include Git, FVVM, tmux && tmuxinator and awesome etc.
