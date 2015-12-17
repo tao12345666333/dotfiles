@@ -267,7 +267,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-    
+
     -- use keyboard control screen focus
     awful.key({modkey,            }, "b",     function () awful.screen.focus(1)         end),
     awful.key({modkey,            }, "u",     function () awful.screen.focus(2)         end),
