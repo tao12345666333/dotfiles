@@ -2,6 +2,8 @@
 
 #install vim
 sudo apt-get install python vim exuberant-ctags git
+# install easy_install
+sudo apt-get install python-setuptools python-dev build-essential
 sudo easy_install pip
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 wget https://raw.githubusercontent.com/tao12345666333/vim/master/vimrc -O $HOME/.vimrc
