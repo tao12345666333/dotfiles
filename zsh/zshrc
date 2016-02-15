@@ -109,3 +109,7 @@ export PROJECT_HOME=$HOME/workspace
 source /usr/local/bin/virtualenvwrapper.sh
 
 workon Tao
+# zsh antigen
+# curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen.zsh
+source .antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
