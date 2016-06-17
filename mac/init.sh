@@ -17,3 +17,6 @@ brew install vim
 pip install dbgp vim-debug pep8 flake8 pyflakes isort
 wget https://raw.githubusercontent.com/tao12345666333/vim/master/vimrc -O $HOME/.vimrc
 vim -E -u $HOME/.vimrc +qall
+
+brew install mysql redis mongodb npm
+npm -g install instant-markdown-d
