@@ -2,7 +2,7 @@
 	name = TaoBeier
 	email = zhangjintao9020@gmail.com
 [core]
-	editour = vim
+	editor = vim
 [merge]
 	tool = vimdiff
 
