@@ -8,3 +8,4 @@ cd Python-3.6.1
 ./configure --prefix=/usr/local/python3.6 --enable-optimizations
 make
 make install
+ln -s /usr/local/python3.6/bin/python3 /usr/bin/python3
