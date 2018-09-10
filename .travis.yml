@@ -1,0 +1,9 @@
+language: bash
+services: docker
+
+env:
+  - VARIANT=latest
+
+script:
+  - docker version
+  - docker info
