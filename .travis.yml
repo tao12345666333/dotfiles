@@ -4,6 +4,6 @@ services: docker
 env:
   - VARIANT=latest
 
-script:
+before_install:
   - docker version
   - docker info
