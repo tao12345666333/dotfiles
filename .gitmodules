@@ -1,3 +1,12 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/tao12345666333/vim.git
+[submodule "awesome/v4/i3lock-color"]
+	path = awesome/v4/i3lock-color
+	url = https://github.com/Raymo111/i3lock-color.git
+[submodule "awesome/v4/i3lock-fancy"]
+	path = awesome/v4/i3lock-fancy
+	url = https://github.com/meskarune/i3lock-fancy.git
+[submodule "awesome/v4/lain"]
+	path = awesome/v4/lain
+	url = https://github.com/lcpz/lain.git
