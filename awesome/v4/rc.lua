@@ -243,6 +243,7 @@ root.buttons(mytable.join(
 -- {{{ Key bindings
 
 globalkeys = mytable.join(
+
     --awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               --{description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -410,8 +411,8 @@ globalkeys = mytable.join(
               {description = "dropdown application", group = "launcher"}),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
-              {description = "show calendar", group = "widgets"}),
+--    awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(0) end end,
+--              {description = "show calendar", group = "widgets"}),
 --    awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
 --              {description = "show filesystem", group = "widgets"}),
 --    awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
@@ -678,7 +679,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.

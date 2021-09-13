@@ -119,15 +119,24 @@ local clock = awful.widget.watch(
 )
 
 -- Calendar
-theme.cal = lain.widget.cal({
-    attach_to = { clock },
-    notification_preset = {
-        font = "Terminus 10",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    },
-    week_number = "none",
-    three = false
+-- theme.cal = lain.widget.cal({
+--     attach_to = { clock },
+--     notification_preset = {
+--         font = "Terminus 10",
+--         fg   = theme.fg_normal,
+--         bg   = theme.bg_normal
+--     },
+--     week_number = "none",
+--     three = false
+-- })
+theme.cal = lain.widget.calendar({
+	attach_to = { clock },
+	notification_preset = {
+		fg = "#FFFFFF",
+		bg = theme.bg_normal,
+		position = "top_right",
+		font = "Monospace 10"
+	}
 })
 
 -- Taskwarrior
@@ -384,12 +393,15 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --spr,
             s.mytaglist,
-            s.mypromptbox,
             spr,
         },
-        s.mytasklist, -- Middle widget
+        { -- Middle widget
+            layout = wibox.layout.fixed.horizontal,
+            s.mypromptbox,
+            s.mytasklist,
+          -- awful.titlebar.widget.iconwidget(s)
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
