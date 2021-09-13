@@ -10,6 +10,10 @@ This is based on [lcpz/awesome-copycats](https://github.com/lcpz/awesome-copycat
 
 Just move this derectory to `~/.config/awesome` the restart awesome.
 
+```sh
+cp -a {themes,lain,rc.lua} $HOME/.config/awesome/
+```
+
 
 ## Lock
 
